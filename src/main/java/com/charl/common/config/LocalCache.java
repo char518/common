@@ -24,7 +24,6 @@ import java.util.concurrent.*;
  *
  *
  */
-
 public class LocalCache {
 
 
@@ -82,6 +81,7 @@ public class LocalCache {
                      */
                     @Override
                     public ListenableFuture reload(final String key,final Object oldvalue) throws Exception{
+                        //此处主要使用一个守护线程固定时间去刷新缓存
                         return executorService.submit(new Callable() {
                             @Override
                             public Object call() throws Exception {

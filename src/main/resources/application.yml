@@ -18,6 +18,7 @@ spring:
     username: guest
     password: guest
     port: 5672
+    publisher-confirms: true
 guava:
   cache:
     properties:
