@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2006-2014 Aijia All rights reserved
+ * Copyright (C) 2006-2018
  * Author: charl
- * Date: 2014-12-16
- * Description:Holder.java 
+ * Description:Holder.java
  */
 package com.charl.common.concurrent;
 

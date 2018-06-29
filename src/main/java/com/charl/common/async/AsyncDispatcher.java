@@ -20,7 +20,7 @@ public class AsyncDispatcher {
     /**
      * 核心线程数
      */
-    private int coreSize = 2;
+    private int coreSize = Runtime.getRuntime().availableProcessors();
 
     /**
      * 定时任务：定时处理待处理的任务
@@ -60,7 +60,7 @@ public class AsyncDispatcher {
         while (tasks.size() > 0) {
             try {
                 //取出队列头部数据,并擦除
-                TypedTask poll = tasks.poll(20, TimeUnit.SECONDS);
+                TypedTask poll = tasks.take();
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
@@ -68,6 +68,8 @@ public class AsyncDispatcher {
                             poll.doAction();
                         } catch (Exception e) {
                             e.printStackTrace();
+                        } finally {
+                            tasks.remove(poll);
                         }
                     }
                 });

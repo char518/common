@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2006-2014 Aijia All rights reserved
+ * Copyright (C) 2006-2018
  * Author: charl
- * Date: 2015-5-12
- * Description:ResultHolder.java 
+ * Description:ResultHolder.java
  */
 package com.charl.common.concurrent;
 
@@ -52,7 +51,7 @@ public class ResultMutex<T> {
     /**
      * 重新设置对应的Boolean mutex
      * 
-     * @param mutex
+     * @param result
      */
     public void setResult(T result) {
         sync.innerSetTrue();

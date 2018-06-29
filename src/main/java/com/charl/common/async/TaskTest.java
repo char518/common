@@ -8,8 +8,11 @@ package com.charl.common.async;
  **/
 public class TaskTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         AsyncDispatcher dispatcher = new AsyncDispatcher();
+
+        Thread.sleep(5*1000);
+
         dispatcher.addTask(new TypedTask<Object>() {
             @Override
             public Object doAction() throws Exception {

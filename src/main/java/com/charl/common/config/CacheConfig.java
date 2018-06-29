@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @program: common
- * @description:
+ * @description: CaffeineCache：springboot 2.X 替代guava
  * @author: charl
  * @create: 2018-06-26 14:17
  **/

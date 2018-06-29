@@ -1,8 +1,7 @@
 /*
- * Copyright (C) 2006-2016 Aijia All rights reserved
+ * Copyright (C) 2006-2018
  * Author: charl
- * Date: 2015-11-10
- * Description:TaskProcessFactory.java 
+ * Description:TaskProcessFactory.java
  */
 package com.charl.common.concurrent;
 
