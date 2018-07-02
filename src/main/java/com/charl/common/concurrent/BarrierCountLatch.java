@@ -29,6 +29,7 @@ public class BarrierCountLatch {
 		}
 
 		public int tryAcquireShared(int acquires) {
+			//自旋
 			for (;;) {
 				int c = getState();
 				int nextc = c + 1;

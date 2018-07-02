@@ -71,6 +71,15 @@ public class ConsistentHashing {
         return nodes.get(keyId);
     }
 
+    /**
+     * 新增服务器
+     * @param server
+     */
+    public void addServer(String server) {
+        hosts.add(server);
+        this.addNode(server);
+    }
+
     public static void main(String[] args) {
         ConsistentHashing consistentHashing = new ConsistentHashing();
         String hello = consistentHashing.getServerAddr("kongkoong");
