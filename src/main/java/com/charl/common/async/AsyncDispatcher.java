@@ -35,6 +35,10 @@ public class AsyncDispatcher {
     }
 
     public void addTask(TypedTask task) {
+        if (CollectionUtils.isEmpty(tasks)) {
+            return;
+        }
+
         tasks.add(task);
         System.out.println("task size:" + tasks.size() + ",task type:" + task.type());
     }
