@@ -1,14 +1,17 @@
 package com.charl.common.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.charl.common.domin.User;
 import com.charl.common.service.IUserService;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import com.charl.common.utils.JsonUtils;
+import com.google.gson.JsonObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -20,37 +23,42 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class UserService implements IUserService {
 
-    private ConcurrentHashMap<Object,Object> userMap = new ConcurrentHashMap();
+    private static final String PRE_FIX = "USER:";
+    private static final String HASH_PRE_FIX = "USER_HASH:";
 
     private AtomicLong incrId = new AtomicLong();
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Override
-    @CachePut(value = "user", key = "#user.id")
     public int addUser(User user) {
         long l = incrId.incrementAndGet();
         user.setId(l);
-        userMap.put(user.getId(), user);
+        //1.String 类型，value只能是string或者字符串
+//        redisTemplate.opsForValue().set(PRE_FIX + l, JSON.toJSONString(user));
+
+        //2.hash 类型，value存放hashmap
+        redisTemplate.opsForHash().put(HASH_PRE_FIX, l+"", user);
+
+        //3.list 类型：双向链表，用于队列
         return 1;
     }
 
     @Override
-    @CachePut(value = "user",key = "#user.id")
     public int updateUser(User user) {
-        userMap.put(user.getId(), user);
+        redisTemplate.opsForValue().set(PRE_FIX + user.getId(), user);
         return 1;
     }
 
     @Override
-    @Cacheable(value = "user", key = "#id", sync = true)
     public User queryUserById(Long id) {
-        User user = (User) userMap.get(id);
-        return user;
+        String s = (String) redisTemplate.opsForValue().get(PRE_FIX + id);
+        return JSONObject.parseObject(s, User.class);
     }
 
     @Override
-    @Cacheable(value = "user", sync = true)
     public List<User> queryUsers() {
-        List<User> users = Arrays.asList((User[]) userMap.values().toArray());
-        return users;
+        return redisTemplate.opsForValue().multiGet(Arrays.asList(PRE_FIX+"1",PRE_FIX+"2",PRE_FIX+"3",PRE_FIX+"4",PRE_FIX+"5"));
     }
 }

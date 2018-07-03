@@ -2,6 +2,8 @@ package com.charl.common.domin;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @program: common
  * @description:
@@ -9,7 +11,7 @@ import lombok.Data;
  * @create: 2018-06-26 14:32
  **/
 @Data
-public class User {
+public class User implements Serializable {
 
     private Long id;
 
