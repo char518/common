@@ -17,6 +17,7 @@ public class BarrierCountLatch {
 	private static final class Sync extends AbstractQueuedSynchronizer {
 		private static final long serialVersionUID = 4982264981922014374L;
 
+		//count > 0标识上锁，= 0 释放锁
 		private int count;
 
 		Sync(int count) {

@@ -1,13 +1,10 @@
 package com.charl.common.concurrent.forkjoin;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 /**
  * @program: common
- * @description:
+ * @description: 跟传统方式相比，并没有感觉到有多快
  * @author: charl
  * @create: 2018-07-04 10:21
  **/
@@ -41,10 +38,13 @@ public class ForkJoinDemo {
                 System.out.println("拆分成两个子任务：任务1：" + start + "到" + i + "，任务2：" + (i + 1) + "到" + end);
 
                 MyForkJoinTask task1 = new MyForkJoinTask(start, i);
-                task1.fork();
 
                 MyForkJoinTask task2 = new MyForkJoinTask(i + 1, end);
+
+                task1.fork();
                 task2.fork();
+
+//                invokeAll(task1,task2);
 
                 return task1.join() + task2.join();
             }
@@ -52,24 +52,25 @@ public class ForkJoinDemo {
     }
 
     public static void main(String[] args) {
-        long l = System.currentTimeMillis();
-        ForkJoinPool pool = new ForkJoinPool();
-        ForkJoinTask<Integer> submit = pool.submit(new MyForkJoinTask(1, 1000000001));
+//        long l = System.currentTimeMillis();
+//        ForkJoinPool pool = ForkJoinPool.commonPool();
+//        ForkJoinTask<Integer> submit = pool.submit(new MyForkJoinTask(1, 1000000001));
+//
+//        try {
+////            Integer result = pool.invoke(new MyForkJoinTask(1, 1000000001)); -- 7956
+//            Integer result = submit.get();
+//            System.out.println("计算结果是result=======：" + result + ",计算时间：" + (System.currentTimeMillis() - l));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        long l1 = System.currentTimeMillis();
+//        int total = 0;
+//        for (int i = 1; i < 1000000001; i++) {
+//            total += i;
+//        }
+//        System.out.println("计算结果："+total+",传统的计算时间：" + (System.currentTimeMillis() - l1));
 
-        try {
-            Integer result = submit.get();
-            System.out.println("计算结果是result=======：" + result + ",计算时间：" + (System.currentTimeMillis() - l));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        int total = 0;
-        for (int i = 1; i < 1000000001; i++) {
-            total += i;
-        }
-        System.out.println("计算结果："+total+",传统的计算时间：" + (System.currentTimeMillis() - l));
     }
 
 }
