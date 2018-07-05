@@ -1,5 +1,7 @@
 package com.charl.common.concurrent.forkjoin;
 
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 /**
@@ -52,24 +54,24 @@ public class ForkJoinDemo {
     }
 
     public static void main(String[] args) {
-//        long l = System.currentTimeMillis();
-//        ForkJoinPool pool = ForkJoinPool.commonPool();
-//        ForkJoinTask<Integer> submit = pool.submit(new MyForkJoinTask(1, 1000000001));
-//
-//        try {
-////            Integer result = pool.invoke(new MyForkJoinTask(1, 1000000001)); -- 7956
-//            Integer result = submit.get();
-//            System.out.println("计算结果是result=======：" + result + ",计算时间：" + (System.currentTimeMillis() - l));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        long l1 = System.currentTimeMillis();
-//        int total = 0;
-//        for (int i = 1; i < 1000000001; i++) {
-//            total += i;
-//        }
-//        System.out.println("计算结果："+total+",传统的计算时间：" + (System.currentTimeMillis() - l1));
+        long l = System.currentTimeMillis();
+        ForkJoinPool pool = ForkJoinPool.commonPool();
+        ForkJoinTask<Integer> submit = pool.submit(new MyForkJoinTask(1, 1000000001));
+
+        try {
+//            Integer result = pool.invoke(new MyForkJoinTask(1, 1000000001)); -- 7956
+            Integer result = submit.get();
+            System.out.println("计算结果是result=======：" + result + ",计算时间：" + (System.currentTimeMillis() - l));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        long l1 = System.currentTimeMillis();
+        int total = 0;
+        for (int i = 1; i < 1000000001; i++) {
+            total += i;
+        }
+        System.out.println("计算结果："+total+",传统的计算时间：" + (System.currentTimeMillis() - l1));
 
     }
 
