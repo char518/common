@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/index.js"></script>
+</head>
+<body>
+    <form name="f" action="/user/login" method="post">
+        <input id="name" name="username" type="text"/><br>
+        <input id="password" name="password" type="password"><br>
+        <input type="submit" value="login">
+        <input name="_csrf" type="hidden" value="${_csrf}"/>
+    </form>
+
+    <p id="users">
+
+    </p>
+
+    <script>
+        $(function () {
+            $('[name=f]').focus()
+        })
+    </script>
+
+</body>
+</html>

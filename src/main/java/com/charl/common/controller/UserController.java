@@ -6,10 +6,7 @@ import com.charl.common.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @program: common
@@ -36,6 +33,15 @@ public class UserController {
     @ApiOperation(value = "获取用户",notes = "获取")
     public BaseResponse<User> getUserById(@RequestBody Long id) {
         User user = userService.queryUserById(id);
+        return BaseResponse.buildSuccessResponse(user);
+    }
+
+    @PostMapping(value = "/login")
+    @ApiOperation(value = "获取用户", notes = "获取")
+    public BaseResponse<User> login(@RequestParam(name = "name") String name, @RequestParam(name = "password") String password) {
+        User user = new User();
+        user.setName(name);
+        user.setDesc(password);
         return BaseResponse.buildSuccessResponse(user);
     }
 
