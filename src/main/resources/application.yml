@@ -48,3 +48,6 @@ charl:
     password: 123456
     url: 192.168.65.128
     port: 8083
+elasticsearch:
+  host: 192.168.65.128
+  port: 9200
