@@ -30,8 +30,6 @@ public class SecurityUser implements UserDetails {
     @Setter
     private String password;
 
-    @Getter
-    @Setter
     private List<SecurityRole> roles;
 
     @Override
@@ -71,5 +69,13 @@ public class SecurityUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public List<SecurityRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<SecurityRole> roles) {
+        this.roles = roles;
     }
 }
