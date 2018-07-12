@@ -1,6 +1,7 @@
 package com.charl.common.service;
 
 import com.charl.common.domin.User;
+import com.charl.common.es.EsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class UserServiceTest {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private EsService esService;
+
     @Test
     public void addUserTest() {
         User user = new User();
@@ -30,6 +34,12 @@ public class UserServiceTest {
         user.setImage("www.baidu.com");
         user.setDesc("个人的一些介绍");
         int i = userService.addUser(user);
+    }
+
+    @Test
+    public void indexTest() {
+        int index = esService.index();
+        System.out.println(index);
     }
 
 }

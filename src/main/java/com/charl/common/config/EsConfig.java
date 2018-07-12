@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PreDestroy;
 import java.io.IOException;
 
 /**
@@ -34,9 +33,8 @@ public class EsConfig {
         return client;
     }
 
-    @PreDestroy
-    public void destroy(RestHighLevelClient restHighLevelClient) throws IOException {
-        restHighLevelClient.close();
+    public void close() throws IOException {
+        restHighLevelClient().close();
     }
 
 }
