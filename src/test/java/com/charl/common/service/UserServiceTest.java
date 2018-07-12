@@ -1,6 +1,7 @@
 package com.charl.common.service;
 
 import com.charl.common.domin.User;
+import com.charl.common.es.EsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

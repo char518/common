@@ -36,6 +36,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!--log-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+
         <!--consul-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -123,7 +130,7 @@
             <version>3.7</version>
         </dependency>
 
-        <!-- spring boot2.x 替换guava 对guava进行重写，有更好的性能 -->
+        <!-- spring boot2.x caffeine 替换guava 对guava进行重写，有更好的性能 -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
@@ -222,6 +229,12 @@
             <artifactId>transport-netty4-client</artifactId>
             <version>6.3.1</version>
         </dependency>
+        <!--high-level-client 必须跟着es的版本走，不然可能出现问题-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+            <!--<version>6.3.1</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
