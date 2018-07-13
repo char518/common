@@ -1,11 +1,8 @@
 package com.charl.common.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.charl.common.domin.User;
 import com.charl.common.service.IUserService;
-import com.charl.common.utils.JsonUtils;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -34,7 +31,7 @@ public class UserService implements IUserService {
     @Override
     public int addUser(User user) {
         long l = incrId.incrementAndGet();
-        user.setId(l);
+        user.setId(l+"");
         //1.String 类型，value只能是string或者字符串
 //        redisTemplate.opsForValue().set(PRE_FIX + l, JSON.toJSONString(user));
 
