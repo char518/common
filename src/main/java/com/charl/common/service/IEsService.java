@@ -10,6 +10,6 @@ public interface IEsService {
 
     int createIndex(String index);
 
-    List<User> searchUsers();
+    List<User> searchUsers(User user);
 
 }

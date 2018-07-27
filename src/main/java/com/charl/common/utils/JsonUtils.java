@@ -34,7 +34,7 @@ public class JsonUtils {
     }
 
     /**
-     * javaBean、list、map convert to json string
+     * javaBean、list、map convert to json stringsdf
      */
     public static Map<String, Object> obj2map(Object obj) {
         return obj == null ? null : json2map(JSON.toJSONString(obj, mapping));

@@ -235,6 +235,7 @@
             <!--<artifactId>elasticsearch-rest-high-level-client</artifactId>-->
             <!--<version>6.3.1</version>-->
         <!--</dependency>-->
+        <!--spring 2.0.2对zipkin支持有问题，暂不实现-->
 
     </dependencies>
 

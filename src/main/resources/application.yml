@@ -12,6 +12,12 @@ spring:
         health-check-timeout: 30s
   application:
     name: charl-common
+#  zipkin:
+#    base-url: http://192.168.65.128:9411/
+##    取样率 100
+#  sleuth:
+#    sampler:
+#      probability: 1.0
 #rabbitmq config
   rabbitmq:
     host: localhost

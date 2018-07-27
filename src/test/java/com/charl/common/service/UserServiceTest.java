@@ -58,7 +58,9 @@ public class UserServiceTest {
 
     @Test
     public void searchUsersTest() {
-        List<User> users = esService.searchUsers();
+        User user = new User();
+        user.setName("Json");
+        List<User> users = esService.searchUsers(user);
         System.out.println(users);
     }
 

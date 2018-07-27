@@ -1,17 +1,14 @@
 package com.charl.common.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.charl.common.config.ElasticsearchUtils;
 import com.charl.common.domin.User;
 import com.charl.common.service.IEsService;
-import com.charl.common.config.ElasticsearchUtils;
 import com.charl.common.utils.JsonUtils;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.beans.Transient;
 import java.util.List;
 import java.util.Map;
 
@@ -39,8 +36,8 @@ public class EsService implements IEsService {
     }
 
     @Override
-    public List<User> searchUsers() {
-        List<Map<String, Object>> maps = elasticsearchUtils.searchListData("user", "admin", "name,age,mobile,image,email", "name=Json");
+    public List<User> searchUsers(User user) {
+        List<Map<String, Object>> maps = elasticsearchUtils.searchListData("user", "admin", "name,age,mobile,image,email", "name=" + user.getName());
         String s = JsonUtils.obj2json(maps);
         List<User> users = JsonUtils.json2list(s, User.class);
         return users;
