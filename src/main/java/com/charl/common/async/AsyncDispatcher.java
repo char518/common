@@ -27,6 +27,9 @@ public class AsyncDispatcher {
      */
     private static ScheduledExecutorService dispatchTaskExecutor = Executors.newScheduledThreadPool(1);
 
+    /**
+     * 其实这个队列不用的
+     */
     private BlockingQueue<TypedTask> tasks = new LinkedBlockingQueue<>();
 
     public AsyncDispatcher() {
@@ -35,10 +38,6 @@ public class AsyncDispatcher {
     }
 
     public void addTask(TypedTask task) {
-        if (CollectionUtils.isEmpty(tasks)) {
-            return;
-        }
-
         tasks.add(task);
         System.out.println("task size:" + tasks.size() + ",task type:" + task.type());
     }
@@ -70,6 +69,7 @@ public class AsyncDispatcher {
                     public void run() {
                         try {
                             poll.doAction();
+                            System.out.println(Thread.currentThread().getName()+"task finish!!!");
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
