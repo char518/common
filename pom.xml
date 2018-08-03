@@ -230,12 +230,13 @@
             <version>6.3.1</version>
         </dependency>
         <!--high-level-client 必须跟着es的版本走，不然可能出现问题-->
-        <!--<dependency>-->
-            <!--<groupId>org.elasticsearch.client</groupId>-->
-            <!--<artifactId>elasticsearch-rest-high-level-client</artifactId>-->
-            <!--<version>6.3.1</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>6.3.1</version>
+        </dependency>
         <!--spring 2.0.2对zipkin支持有问题，暂不实现-->
+
 
     </dependencies>
 

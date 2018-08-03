@@ -25,7 +25,9 @@ public class NettyDemoServer {
     }
 
     public void exec() {
+        //接收连接
         EventLoopGroup boss = new NioEventLoopGroup();
+        //处理连接过来的
         EventLoopGroup worker = new NioEventLoopGroup();
 
         System.out.println("准备运行端口：");

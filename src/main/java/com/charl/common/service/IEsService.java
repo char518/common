@@ -12,4 +12,6 @@ public interface IEsService {
 
     List<User> searchUsers(User user);
 
+    List<User> searchUserList(User user);
+
 }

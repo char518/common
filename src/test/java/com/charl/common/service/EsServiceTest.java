@@ -31,4 +31,11 @@ public class EsServiceTest {
         Assert.assertNotNull(users);
     }
 
+    @Test
+    public void searchUserListTest() {
+        User user = new User();
+        user.setName("张三");
+        List<User> users = esService.searchUserList(user);
+    }
+
 }

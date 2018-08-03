@@ -2,10 +2,11 @@ package com.charl.common.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.charl.common.config.ElasticsearchUtils;
+import com.charl.common.dao.ElasticSearchRestClientDao;
 import com.charl.common.domin.User;
 import com.charl.common.service.IEsService;
 import com.charl.common.utils.JsonUtils;
-import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,12 @@ public class EsService implements IEsService {
     @Autowired
     private ElasticsearchUtils elasticsearchUtils;
 
+
     @Autowired
-    private TransportClient transportClient;
+    private RestHighLevelClient restHighLevelClient;
+
+    @Autowired
+    private ElasticSearchRestClientDao restClientDao;
 
     @Override
     public int addDocument(User user) {
@@ -43,5 +48,9 @@ public class EsService implements IEsService {
         return users;
     }
 
+    public List<User> searchUserList(User user) {
+        List<User> user1 = restClientDao.queryAll("user", User.class, 3);
+        return user1;
+    }
 
 }

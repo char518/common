@@ -39,6 +39,8 @@ public class UserService implements IUserService {
         redisTemplate.opsForHash().put(HASH_PRE_FIX, l+"", user);
 
         //3.list 类型：双向链表，用于队列
+
+        redisTemplate.boundListOps(PRE_FIX + "list01");
         return 1;
     }
 
