@@ -43,5 +43,8 @@ public class GuavaCacheLoaderDemo {
         GuavaCacheLoaderDemo demo = new GuavaCacheLoaderDemo();
         Object o = demo.get("1");
         System.out.println(o);
+
+        Object o1 = demo.get("1");
+        System.out.println(o1);
     }
 }

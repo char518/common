@@ -5,6 +5,7 @@ import com.charl.common.domin.User;
 import com.charl.common.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -18,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @create: 2018-06-26 14:35
  **/
 @Service
-public class UserService implements IUserService {
+        public class UserService implements IUserService {
 
     private static final String PRE_FIX = "USER:";
     private static final String HASH_PRE_FIX = "USER_HASH:";
@@ -59,5 +60,11 @@ public class UserService implements IUserService {
     @Override
     public List<User> queryUsers() {
         return redisTemplate.opsForValue().multiGet(Arrays.asList(PRE_FIX+"1",PRE_FIX+"2",PRE_FIX+"3",PRE_FIX+"4",PRE_FIX+"5"));
+    }
+
+    @Override
+    @Scheduled(fixedRate = 5000)
+    public void scheduleTest() {
+        System.out.println("charl自定义定时任务........");
     }
 }

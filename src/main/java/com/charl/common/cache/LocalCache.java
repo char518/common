@@ -1,4 +1,4 @@
-package com.charl.common.config;
+package com.charl.common.cache;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

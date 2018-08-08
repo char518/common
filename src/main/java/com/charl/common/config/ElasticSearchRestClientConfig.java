@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PreDestroy;
+import java.io.IOException;
+
 /**
  * @program: common
  * @description:
@@ -22,9 +25,11 @@ public class ElasticSearchRestClientConfig {
     @Value(value = "${elasticsearch.http.port}")
     private Integer esPort;
 
+    RestHighLevelClient restHighLevelClient = null;
+
     @Bean
     public RestHighLevelClient restHighLevelClient() {
-        RestHighLevelClient restHighLevelClient = new RestHighLevelClient(
+        restHighLevelClient = new RestHighLevelClient(
                 RestClient.builder(
                         new HttpHost(esHost, esPort, "http"),
                         new HttpHost(esHost, esPort + 1, "http"))
@@ -32,13 +37,16 @@ public class ElasticSearchRestClientConfig {
         return restHighLevelClient;
     }
 
-//    @PreDestroy
-//    public void release(RestHighLevelClient restHighLevelClient) {
-//        try {
-//            restHighLevelClient.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @PreDestroy
+    public void release() {
+        if (null == restHighLevelClient) {
+            return;
+        }
+        try {
+            restHighLevelClient.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

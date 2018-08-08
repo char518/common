@@ -35,6 +35,7 @@ public class ElasticSearchRestClientDao {
      * 查询指定Index 所有数据
      * @param index
      * @param tClass
+     * @param size
      * @return
      */
     public <T> List<T> queryAll(String index, Class<T> tClass, int size) {

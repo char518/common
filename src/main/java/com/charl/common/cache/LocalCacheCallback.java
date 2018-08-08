@@ -1,4 +1,4 @@
-package com.charl.common.config;
+package com.charl.common.cache;
 
 public interface LocalCacheCallback {
 

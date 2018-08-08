@@ -64,4 +64,8 @@ public class UserServiceTest {
         System.out.println(users);
     }
 
+    @Test
+    public void scheduleTestDemo() {
+        userService.scheduleTest();
+    }
 }
